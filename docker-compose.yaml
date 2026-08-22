@@ -1,0 +1,37 @@
+# ROSCon 2026 - Motion Planning Fundamentals with MoveIt
+# https://github.com/b-robotized/roscon2026_motion_planning_workshop
+#
+#   xhost +local:docker      # once per login session, on the host
+#   docker compose pull
+#   docker compose up -d
+#   docker compose exec workshop bash
+#
+# The whole workspace lives inside the image -- nothing is mounted from the
+# host. Use `docker compose stop` / `start` between sessions to keep your work.
+# `docker compose down` deletes the container and everything you changed in it.
+
+services:
+  workshop:
+    image: ghcr.io/b-robotized/roscon2026-motion-planning-workshop:latest
+    container_name: roscon2026_motion_planning
+    shm_size: "2gb"
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XDG_RUNTIME_DIR=/tmp/runtime-ubuntu
+
+      - __GLX_VENDOR_LIBRARY_NAME=mesa
+      - LIBGL_ALWAYS_SOFTWARE=1
+
+      - ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+    network_mode: host
+    ipc: host
+
+    stdin_open: true
+    tty: true
+    command: sleep infinity
