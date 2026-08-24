@@ -3,8 +3,8 @@
 ## Prerequisites
 
 1. A Linux-based OS is recommended (Ubuntu 22.04 or 24.04). No ROS setup is required locally — everything runs in a Docker container.
-2. Docker Engine and the Docker Compose plugin. Installation instructions are on the linked pages.
-3. VS Code with the Dev Containers extension. You'll use it to edit files inside the container.
+2. [Docker Engine](https://docs.docker.com/engine/install/) and the [Docker Compose](https://docs.docker.com/compose/install/linux/) plugin. Installation instructions are on the linked pages.
+3. [VS Code](https://code.visualstudio.com/) with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). You'll use it to edit files inside the container.
 4. About 20 GB of free disk space. The image is roughly 7 GB and Docker needs room to unpack it.
 
 ## Setup instructions
@@ -69,4 +69,4 @@
 
 - To edit files, attach VS Code to the running container: open the Command Palette, choose `Dev Containers: Attach to Running Container`, and pick `roscon2026_motion_planning`.
 
-  If these steps go smoothly, you are all set. If not, please raise an issue in this repository and we'll help you as soon as we can!
+If these steps go smoothly, you are all set. If not, please raise an issue in this repository and we'll help you as soon as we can!
