@@ -85,3 +85,28 @@ ros2 topic pub --once -w 1 /scaled_joint_trajectory_controller/joint_trajectory 
 ```
 
 ## Moveit Architecture
+
+1. In `ur_macro.srdf.xacro`, add:
+
+```xml
+<group name="ur_wrist">
+  <chain base_link="base_link" tip_link="wrist_3_link"/>
+</group>
+```
+
+2. In `kinematics.yaml`, add:
+
+```yaml
+ur_wrist:
+  kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
+  kinematics_solver_search_resolution: 0.005
+  kinematics_solver_timeout: 0.005
+```
+
+3. Build again:
+
+```bash
+cbnt
+```
+
+## Planning Scene and Collisions
