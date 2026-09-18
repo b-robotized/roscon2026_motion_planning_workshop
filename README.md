@@ -70,3 +70,10 @@
 - To edit files, attach VS Code to the running container: open the Command Palette, choose `Dev Containers: Attach to Running Container`, and pick `roscon2026_motion_planning`.
 
 If these steps go smoothly, you are all set. If not, please raise an issue in this repository and we'll help you as soon as we can!
+
+## Organizers
+
+- Denis Stogl, [b>>robotized](https://en.b-robotized.com/)
+- Jennifer Buehler, [b>>robotized](https://en.b-robotized.com/)
+- Timotej Gaspar, [b>>robotized](https://en.b-robotized.com/)
+- Yara Shahin, [b>>robotized](https://en.b-robotized.com/)
