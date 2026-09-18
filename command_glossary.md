@@ -62,4 +62,26 @@ ros2 topic pub --once -w 1 /forward_position_controller/commands \
   std_msgs/msg/Float64MultiArray "{data: [-0.5, -1.5, 1.4, -1.5, -1.57, 0.0]}"
 ```
 
+```bash
+ros2 control switch_controllers \
+  --deactivate forward_position_controller \
+  --activate scaled_joint_trajectory_controller
+```
+
+```bash
+ros2 topic pub --once -w 1 /scaled_joint_trajectory_controller/joint_trajectory \
+  trajectory_msgs/msg/JointTrajectory "{
+    joint_names: [
+      shoulder_pan_joint, shoulder_lift_joint, elbow_joint,
+      wrist_1_joint, wrist_2_joint, wrist_3_joint
+    ],
+    points: [
+      {
+        positions: [-1.0, -1.5, 1.4, -1.5, -1.57, 0.0],
+        time_from_start: {sec: 4, nanosec: 0}
+      }
+    ]
+  }"
+```
+
 ## Moveit Architecture
