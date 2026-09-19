@@ -186,3 +186,37 @@ Second terminal: run the reference solution
 ```bash
 ros2 run workshop_planning_scene workshop_scenario.py
 ```
+
+## Moveit Servo
+
+Launch with servo:
+
+```bash
+ros2 launch ur_simulation_gz ur_sim_moveit.launch.py ur_type:=ur5e launch_servo:=true
+```
+
+Launch the forward_position_controller spawner:
+
+```bash
+ros2 run controller_manager spawner forward_position_controller --inactive -c /controller_manager
+```
+
+Deactivate JTC and activate forward_position_controller:
+
+```bash
+ros2 control switch_controllers --deactivate scaled_joint_trajectory_controller --activate forward_position_controller
+```
+
+Switch to twist mode:
+
+```bash
+ros2 service call /servo_node/switch_command_type \
+  moveit_msgs/srv/ServoCommandType "{command_type: 1}"
+```
+
+Send a twist command:
+
+```bash
+ros2 topic pub -t 100 -r 50 /servo_node/delta_twist_cmds geometry_msgs/msg/TwistStamped \
+  "{header: {stamp: now, frame_id: base_link}, twist: {linear: {z: 0.05}}}"
+```
