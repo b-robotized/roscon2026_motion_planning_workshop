@@ -164,3 +164,25 @@ ros2 service call /apply_planning_scene moveit_msgs/srv/ApplyPlanningScene "{
   }
 }"
 ```
+
+### Exercise solutions
+
+Build the new package and re-source the workspace:
+
+```bash
+rosd
+cbnt
+source install/setup.bash
+```
+
+First terminal: launch our environment
+
+```bash
+ros2 launch ur_simulation_gz ur_sim_moveit.launch.py ur_type:=ur5e
+```
+
+Second terminal: run the reference solution
+
+```bash
+ros2 run workshop_planning_scene workshop_scenario.py
+```
