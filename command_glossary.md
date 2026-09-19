@@ -110,3 +110,57 @@ cbnt
 ```
 
 ## Planning Scene and Collisions
+
+```bash
+ros2 service call /apply_planning_scene moveit_msgs/srv/ApplyPlanningScene "{
+  scene: {
+    is_diff: true,
+    world: {
+      collision_objects: [{
+        header: {frame_id: base_link},
+        id: cube,
+        operation: 0,
+        primitives: [{type: 1, dimensions: [0.05, 0.05, 0.05]}],
+        primitive_poses: [{position: {x: 0.5, y: 0.2, z: 0.3}, orientation: {w: 1.0}}]
+      }]
+    }
+  }
+}"
+```
+
+```bash
+ros2 service call /apply_planning_scene moveit_msgs/srv/ApplyPlanningScene "{
+  scene: {
+    is_diff: true,
+    world: {
+      collision_objects: [{
+        header: {frame_id: base_link},
+        id: cube,
+        operation: 0,
+        primitives: [{type: 1, dimensions: [0.05, 0.05, 0.05]}],
+        primitive_poses: [{position: {x: 0.5, y: -0.2, z: 0.3}, orientation: {w: 1.0}}]
+      }]
+    }
+  }
+}"
+```
+
+```bash
+ros2 service call /apply_planning_scene moveit_msgs/srv/ApplyPlanningScene "{
+  scene: {
+    is_diff: true,
+    robot_state: {
+      is_diff: true,
+      attached_collision_objects: [{
+        link_name: tool0,
+        touch_links: [tool0, wrist_3_link, wrist_2_link],
+        object: {
+          header: {frame_id: base_link},
+          id: cube,
+          operation: 0
+        }
+      }]
+    }
+  }
+}"
+```
