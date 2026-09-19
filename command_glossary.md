@@ -220,3 +220,40 @@ Send a twist command:
 ros2 topic pub -t 100 -r 50 /servo_node/delta_twist_cmds geometry_msgs/msg/TwistStamped \
   "{header: {stamp: now, frame_id: base_link}, twist: {linear: {z: 0.05}}}"
 ```
+
+- Correct command is:
+
+    ```bash
+    ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args \
+    -p stamped:=true -p frame_id:=base_link -p use_sim_time:=true \
+    -p speed:=0.05 -p turn:=0.3 \
+    -r cmd_vel:=/servo_node/delta_twist_cmds
+    ```
+
+## Design your own Pick & Place
+
+```bash
+ros2 action send_goal /move_action moveit_msgs/action/MoveGroup "{
+  request: {
+    group_name: ur_manipulator,
+    num_planning_attempts: 10,
+    allowed_planning_time: 5.0,
+    max_velocity_scaling_factor: 0.1,
+    max_acceleration_scaling_factor: 0.1,
+    goal_constraints: [{
+      joint_constraints: [
+        {joint_name: shoulder_pan_joint,  position: 0.0,   tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0},
+        {joint_name: shoulder_lift_joint, position: -1.57, tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0},
+        {joint_name: elbow_joint,         position: 1.57,  tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0},
+        {joint_name: wrist_1_joint,       position: -1.57, tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0},
+        {joint_name: wrist_2_joint,       position: -1.57, tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0},
+        {joint_name: wrist_3_joint,       position: 0.0,   tolerance_above: 0.01, tolerance_below: 0.01, weight: 1.0}
+      ]
+    }]
+  },
+  planning_options: {
+    planning_scene_diff: {is_diff: true, robot_state: {is_diff: true}},
+    plan_only: false
+  }
+}"
+```
