@@ -257,3 +257,18 @@ ros2 action send_goal /move_action moveit_msgs/action/MoveGroup "{
   }
 }"
 ```
+
+For the P&P demo:
+
+```bash
+cbnt
+source install/setup.bash
+```
+
+```bash
+ros2 launch ur_simulation_gz ur_sim_moveit.launch.py ur_type:=ur5e
+```
+
+```bash
+ros2 run workshop_planning_scene workshop_scenario.py
+```
