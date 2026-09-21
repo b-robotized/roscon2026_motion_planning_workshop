@@ -22,15 +22,15 @@ WORKDIR ${ROS_WS}
 
 # RosTeamWorkspace: provides the rosd/rosds/cb/cbnt/ct/ca aliases used in the workshop.
 RUN git clone --depth 1 https://github.com/b-robotized/ros_team_workspace.git /opt/ros_team_workspace \
-    && pip3 install -r /opt/ros_team_workspace/rtwcli/requirements.txt --break-system-packages
+    && cd /opt/ros_team_workspace/rtwcli \
+    && pip3 install -r requirements.txt --break-system-packages
 
 # The workshop material itself, so `rosds && cd roscon2026_motion_planning_workshop && git pull` works.
 RUN git clone https://github.com/b-robotized/roscon2026_motion_planning_workshop.git \
       src/roscon2026_motion_planning_workshop
 
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc \
-    && echo "export ROS_WS=${ROS_WS}" >> ~/.bashrc \
-    && echo "source /opt/ros_team_workspace/setup.bash" >> ~/.bashrc \
+RUN echo "source /opt/ros_team_workspace/setup.bash" >> ~/.bashrc \
+    && echo "source /opt/ros_team_workspace/scripts/environment/setup.bash ${ROS_DISTRO} ${ROS_WS} - -" >> ~/.bashrc \
     && echo 'export RCUTILS_COLORIZED_OUTPUT=1' >> ~/.bashrc
 ENV TERM=xterm-color
 
