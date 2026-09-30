@@ -1,5 +1,7 @@
 # ROSCon 2026 Workshop: Motion Planning Fundamentals with Moveit®
 
+[Presentation](./roscon2026_motion_planning_workshop.pdf)
+
 ## Prerequisites
 
 1. A Linux-based OS is recommended (Ubuntu 22.04 or 24.04). No ROS setup is required locally — everything runs in a Docker container.
