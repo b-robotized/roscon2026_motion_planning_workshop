@@ -76,6 +76,7 @@ If these steps go smoothly, you are all set. If not, please raise an issue in th
 ## Organizers
 
 - Denis Stogl, [b>>robotized](https://en.b-robotized.com/)
+- Gabriela Vitez, [b>>robotized](https://en.b-robotized.com/)
 - Jennifer Buehler, [b>>robotized](https://en.b-robotized.com/)
 - Timotej Gaspar, [b>>robotized](https://en.b-robotized.com/)
 - Yara Shahin, [b>>robotized](https://en.b-robotized.com/)
